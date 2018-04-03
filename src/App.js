@@ -54,6 +54,32 @@ const gifs = [
       />
     ),
     title: "When you write reusable code"
+  },
+  {
+    content: (
+      <iframe
+        src="https://giphy.com/embed/V4sY8JCTxGyaI"
+        width="480"
+        height="270"
+        frameBorder="0"
+        class="giphy-embed"
+        allowFullScreen
+      />
+    ),
+    title: "When you don't have time for strategic work"
+  },
+  {
+    content: (
+      <iframe
+        src="https://giphy.com/embed/8abAbOrQ9rvLG"
+        width="480"
+        height="233"
+        frameBorder="0"
+        class="giphy-embed"
+        allowFullScreen
+      />
+    ),
+    title: "Gandalf was actually more of a QA guy.."
   }
 ];
 
@@ -82,7 +108,7 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    setTimeout(this.changeGif, 4000);
+    setTimeout(this.changeGif, 5000);
   }
 
   changeGif() {
