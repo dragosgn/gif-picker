@@ -6,11 +6,20 @@ import ReactCSSTransitionGroup from "react-addons-css-transition-group"; // ES6
 
 const Root = styled.div`
   height: 100vh;
-  width: 100%;
   background-color: black;
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
+  > span {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+const GifBox = styled.div`
+  width: 60%;
+  height: 60%;
 `;
 
 const Headline = styled.h1`
@@ -19,6 +28,12 @@ const Headline = styled.h1`
   padding-bottom: 0.5rem;
   width: 100%;
   display: flex;
+  justify-content: center;
+`;
+
+const Gif = styled.div`
+  display: flex;
+  padding-top: 1rem;
   justify-content: center;
 `;
 
@@ -110,14 +125,6 @@ const gifs = [
   }
 ];
 
-const Gif = styled.div`
-  width: 60%;
-  height: 60%;
-  display: flex;
-  padding-top: 1rem;
-  justify-content: center;
-`;
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -158,13 +165,21 @@ class App extends Component {
             path={"/"}
             render={routerProps => (
               <Root routerProps={routerProps}>
-                <Headline>{this.state.title}</Headline>
-                <Gif>{this.state.content}</Gif>
-                {this.state.isFull ? (
-                  ""
-                ) : (
-                  <button onClick={this.goFull}>Switch Fullscreen</button>
-                )}
+                <ReactCSSTransitionGroup
+                  transitionName="example"
+                  transitionEnterTimeout={500}
+                  transitionLeaveTimeout={300}
+                >
+                  <GifBox>
+                    <Headline>{this.state.title}</Headline>
+                    <Gif>{this.state.content}</Gif>
+                    {this.state.isFull ? (
+                      ""
+                    ) : (
+                      <button onClick={this.goFull}>Switch Fullscreen</button>
+                    )}
+                  </GifBox>
+                </ReactCSSTransitionGroup>
               </Root>
             )}
           />
