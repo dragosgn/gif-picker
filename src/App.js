@@ -15,6 +15,9 @@ const Headline = styled.h1`
   color: white;
   padding-top: 1rem;
   padding-bottom: 0.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 const GifBox = styled.div`
@@ -54,16 +57,13 @@ const gifs = [
   }
 ];
 
-const displayGif = gif => {
-  for (gif in gifs) {
-    return (
-      <GifBox>
-        <Headline>{gif.title}</Headline>
-        <div>{gif.content}</div>
-      </GifBox>
-    );
-  }
-};
+const Gif = styled.div`
+  width: 400px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 class App extends Component {
   constructor(props) {
@@ -82,14 +82,16 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    setTimeout(this.changeGif, 3000);
+    setTimeout(this.changeGif, 4000);
   }
 
   changeGif() {
-    console.log("changing gifff");
+    let index = this.state.index < gifs.length - 1 ? this.state.index + 1 : 0;
+    console.log(index);
     this.setState({
       content: gifs[this.state.index].content,
-      title: gifs[this.state.index].title
+      title: gifs[this.state.index].title,
+      index: index
     });
   }
 
@@ -97,7 +99,7 @@ class App extends Component {
     return (
       <Root>
         <Headline>{this.state.title}</Headline>
-        {this.state.content}
+        <Gif>{this.state.content}</Gif>
       </Root>
     );
   }
