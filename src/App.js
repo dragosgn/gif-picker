@@ -80,6 +80,32 @@ const gifs = [
       />
     ),
     title: "Gandalf was actually more of a QA guy.."
+  },
+  {
+    content: (
+      <iframe
+        src="https://giphy.com/embed/l41YrdtfokTyKGFu8"
+        width="480"
+        height="387"
+        frameBorder="0"
+        class="giphy-embed"
+        allowFullScreen
+      />
+    ),
+    title: "Troubleshooting servers after a DEV deployment"
+  },
+  {
+    content: (
+      <iframe
+        src="https://giphy.com/embed/9umH7yTO8gLYY"
+        width="480"
+        height="339"
+        frameBorder="0"
+        class="giphy-embed"
+        allowFullScreen
+      />
+    ),
+    title: "Intern hitting production"
   }
 ];
 
@@ -108,7 +134,7 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    setTimeout(this.changeGif, 5000);
+    setTimeout(this.changeGif, 6000);
   }
 
   changeGif() {
