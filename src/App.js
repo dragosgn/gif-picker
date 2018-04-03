@@ -4,6 +4,8 @@ import { Route } from "react-router-dom";
 import Fullscreen from "react-full-screen";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group"; // ES6
 
+import "./app.css";
+
 const Root = styled.div`
   height: 100vh;
   background-color: black;
@@ -14,12 +16,17 @@ const Root = styled.div`
   > span {
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
   }
 `;
 
 const GifBox = styled.div`
   width: 60%;
-  height: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Headline = styled.h1`
@@ -35,6 +42,13 @@ const Gif = styled.div`
   display: flex;
   padding-top: 1rem;
   justify-content: center;
+`;
+
+const Button = styled.button`
+  padding: 0.25rem;
+  margin: 0.5rem;
+  border-radius: 2px;
+  border-color: transparent;
 `;
 
 const gifs = [
@@ -165,21 +179,23 @@ class App extends Component {
             path={"/"}
             render={routerProps => (
               <Root routerProps={routerProps}>
-                <ReactCSSTransitionGroup
-                  transitionName="example"
-                  transitionEnterTimeout={500}
-                  transitionLeaveTimeout={300}
-                >
-                  <GifBox>
+                <GifBox>
+                  <ReactCSSTransitionGroup
+                    transitionName="transition"
+                    transitionAppear={true}
+                    transitionAppearTimeout={500}
+                    transitionEnter={true}
+                    transitionLeave={true}
+                  >
                     <Headline>{this.state.title}</Headline>
                     <Gif>{this.state.content}</Gif>
                     {this.state.isFull ? (
                       ""
                     ) : (
-                      <button onClick={this.goFull}>Switch Fullscreen</button>
+                      <Button onClick={this.goFull}>Switch Fullscreen</Button>
                     )}
-                  </GifBox>
-                </ReactCSSTransitionGroup>
+                  </ReactCSSTransitionGroup>
+                </GifBox>
               </Root>
             )}
           />
