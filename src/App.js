@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-
 import styled from "styled-components";
 import { Route } from "react-router-dom";
+import Fullscreen from "react-full-screen";
 
 const Root = styled.div`
   height: 100vh;
@@ -21,17 +21,11 @@ const Headline = styled.h1`
   justify-content: center;
 `;
 
-const GifBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
 const gifs = [
   {
     content: (
       <iframe
-        title="https://giphy.com/embed/13NUOwOLq0NJug"
+        title="13NUOwOLq0NJug"
         src="https://giphy.com/embed/13NUOwOLq0NJug"
         width="480"
         height="401"
@@ -45,12 +39,13 @@ const gifs = [
   {
     content: (
       <iframe
-        title="https://giphy.com/embed/nhjqWBnMfF888"
+        title="nhjqWBnMfF888"
         src="https://giphy.com/embed/nhjqWBnMfF888"
         width="480"
         height="254"
         frameBorder="0"
         className="giphy-embed"
+        title={Math.random()}
         allowFullScreen
       />
     ),
@@ -59,11 +54,12 @@ const gifs = [
   {
     content: (
       <iframe
+        title="V4sY8JCTxGyaI"
         src="https://giphy.com/embed/V4sY8JCTxGyaI"
         width="480"
         height="270"
         frameBorder="0"
-        class="giphy-embed"
+        className="giphy-embed"
         allowFullScreen
       />
     ),
@@ -72,11 +68,12 @@ const gifs = [
   {
     content: (
       <iframe
+        title="8abAbOrQ9rvLG"
         src="https://giphy.com/embed/8abAbOrQ9rvLG"
         width="480"
         height="233"
         frameBorder="0"
-        class="giphy-embed"
+        className="giphy-embed"
         allowFullScreen
       />
     ),
@@ -85,11 +82,12 @@ const gifs = [
   {
     content: (
       <iframe
+        title="l41YrdtfokTyKGFu8"
         src="https://giphy.com/embed/l41YrdtfokTyKGFu8"
         width="480"
         height="387"
         frameBorder="0"
-        class="giphy-embed"
+        className="giphy-embed"
         allowFullScreen
       />
     ),
@@ -98,11 +96,12 @@ const gifs = [
   {
     content: (
       <iframe
+        title="9umH7yTO8gLYY"
         src="https://giphy.com/embed/9umH7yTO8gLYY"
         width="480"
         height="339"
         frameBorder="0"
-        class="giphy-embed"
+        className="giphy-embed"
         allowFullScreen
       />
     ),
@@ -111,8 +110,8 @@ const gifs = [
 ];
 
 const Gif = styled.div`
-  width: 600px;
-  height: 600px;
+  width: 60%;
+  height: 60%;
   display: flex;
   padding-top: 1rem;
   justify-content: center;
@@ -124,23 +123,24 @@ class App extends Component {
     this.state = {
       content: "",
       title: "",
-      index: 0
+      index: 0,
+      isFull: false
     };
 
+    this.goFull = this.goFull.bind(this);
     this.changeGif = this.changeGif.bind(this);
   }
 
   componentDidMount() {
-    this.changeGif();
+    setInterval(this.changeGif, 6000);
   }
 
-  componentDidUpdate() {
-    setTimeout(this.changeGif, 6000);
+  goFull() {
+    this.setState({ isFull: !this.state.isFull });
   }
 
   changeGif() {
     let index = this.state.index < gifs.length - 1 ? this.state.index + 1 : 0;
-    console.log(index);
     this.setState({
       content: gifs[this.state.index].content,
       title: gifs[this.state.index].title,
@@ -151,16 +151,19 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Route
-          exact
-          path={"/"}
-          render={routerProps => (
-            <Root routerProps={routerProps}>
-              <Headline>{this.state.title}</Headline>
-              <Gif>{this.state.content}</Gif>
-            </Root>
-          )}
-        />
+        <Fullscreen enabled={this.state.isFull}>
+          <Route
+            exact
+            path={"/"}
+            render={routerProps => (
+              <Root routerProps={routerProps}>
+                <Headline>{this.state.title}</Headline>
+                <Gif>{this.state.content}</Gif>
+                <button onClick={this.goFull}>Switch Fullscreen</button>
+              </Root>
+            )}
+          />
+        </Fullscreen>
       </div>
     );
   }
