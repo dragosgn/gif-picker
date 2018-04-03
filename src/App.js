@@ -47,7 +47,7 @@ const Gif = styled.div`
   display: flex;
   padding-top: 1rem;
   justify-content: center;
-  animation: ${faderIn}, ${faderOut};
+  animation: ${faderIn}, ${faderOut} 3s linear 1;
 `;
 
 const Button = styled.button`
@@ -186,15 +186,6 @@ class App extends Component {
             render={routerProps => (
               <Root routerProps={routerProps}>
                 <GifBox>
-                  {/* <ReactCSSTransitionGroup
-                    transitionName="transition"
-                    transitionAppear={true}
-                    transitionEnterTimeout={1000}
-                    transitionLeaveTimeout={1000}
-                    transitionAppearTimeout={500}
-                    transitionEnter={true}
-                    transitionLeave={true}
-                  > */}
                   <Headline>{this.state.title}</Headline>
                   <Gif>{this.state.content}</Gif>
                   {this.state.isFull ? (
@@ -202,7 +193,6 @@ class App extends Component {
                   ) : (
                     <Button onClick={this.goFull}>Switch Fullscreen</Button>
                   )}
-                  {/* </ReactCSSTransitionGroup> */}
                 </GifBox>
               </Root>
             )}
