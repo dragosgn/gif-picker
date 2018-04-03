@@ -111,10 +111,10 @@ const gifs = [
 ];
 
 const Gif = styled.div`
-  width: 400px;
-  height: 400px;
+  width: 600px;
+  height: 600px;
   display: flex;
-  align-items: center;
+  padding-top: 1rem;
   justify-content: center;
 `;
 
@@ -151,7 +151,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        {" "}
         <Route
           exact
           path={"/"}
