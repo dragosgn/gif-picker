@@ -66,15 +66,40 @@ const displayGif = gif => {
 };
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      content: "",
+      title: "",
+      index: 0
+    };
+
+    this.changeGif = this.changeGif.bind(this);
+  }
+
+  componentDidMount() {
+    this.changeGif();
+  }
+
+  componentDidUpdate() {
+    setTimeout(this.changeGif, 3000);
+  }
+
   changeGif() {
+    console.log("changing gifff");
     this.setState({
-      content: gifs[0].content,
-      title: gifs[0].title
+      content: gifs[this.state.index].content,
+      title: gifs[this.state.index].title
     });
   }
 
   render() {
-    return <Root>{this.state.content}</Root>;
+    return (
+      <Root>
+        <Headline>{this.state.title}</Headline>
+        {this.state.content}
+      </Root>
+    );
   }
 }
 
