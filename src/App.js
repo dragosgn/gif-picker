@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import styled from "styled-components";
+import { Route } from "react-router-dom";
 
 const Root = styled.div`
   height: 100vh;
@@ -149,10 +150,19 @@ class App extends Component {
 
   render() {
     return (
-      <Root>
-        <Headline>{this.state.title}</Headline>
-        <Gif>{this.state.content}</Gif>
-      </Root>
+      <div>
+        {" "}
+        <Route
+          exact
+          path={"/"}
+          render={routerProps => (
+            <Root routerProps={routerProps}>
+              <Headline>{this.state.title}</Headline>
+              <Gif>{this.state.content}</Gif>
+            </Root>
+          )}
+        />
+      </div>
     );
   }
 }
