@@ -4,11 +4,13 @@
 
 .transition-enter .transition-enter-active {
   opacity: 1;
+  transform: translate(200px, 150px) rotate(20deg);
   transition: opacity 500ms ease-in;
 }
 
 .transition-leave {
   opacity: 1;
+  transform: translate(200px, 150px) rotate(20deg);
 }
 
 .transition-leave .transition-leave-active {

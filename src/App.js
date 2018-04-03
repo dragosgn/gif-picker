@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Route } from "react-router-dom";
 import Fullscreen from "react-full-screen";
-import ReactCSSTransitionGroup from "react-addons-css-transition-group"; // ES6
 
-import "./app.css";
+import { fadeIn, fadeOut } from "react-animations";
 
 const Root = styled.div`
   height: 100vh;
@@ -29,6 +28,10 @@ const GifBox = styled.div`
   align-items: center;
 `;
 
+const faderIn = keyframes`${fadeIn}`;
+
+const faderOut = keyframes`${fadeOut}`;
+
 const Headline = styled.h1`
   color: white;
   padding-top: 1rem;
@@ -36,12 +39,15 @@ const Headline = styled.h1`
   width: 100%;
   display: flex;
   justify-content: center;
+  animation: ${faderIn}, ${faderOut};
+  animation-duration: 2s, 2s;
 `;
 
 const Gif = styled.div`
   display: flex;
   padding-top: 1rem;
   justify-content: center;
+  animation: ${faderIn}, ${faderOut};
 `;
 
 const Button = styled.button`
@@ -180,21 +186,23 @@ class App extends Component {
             render={routerProps => (
               <Root routerProps={routerProps}>
                 <GifBox>
-                  <ReactCSSTransitionGroup
+                  {/* <ReactCSSTransitionGroup
                     transitionName="transition"
                     transitionAppear={true}
+                    transitionEnterTimeout={1000}
+                    transitionLeaveTimeout={1000}
                     transitionAppearTimeout={500}
                     transitionEnter={true}
                     transitionLeave={true}
-                  >
-                    <Headline>{this.state.title}</Headline>
-                    <Gif>{this.state.content}</Gif>
-                    {this.state.isFull ? (
-                      ""
-                    ) : (
-                      <Button onClick={this.goFull}>Switch Fullscreen</Button>
-                    )}
-                  </ReactCSSTransitionGroup>
+                  > */}
+                  <Headline>{this.state.title}</Headline>
+                  <Gif>{this.state.content}</Gif>
+                  {this.state.isFull ? (
+                    ""
+                  ) : (
+                    <Button onClick={this.goFull}>Switch Fullscreen</Button>
+                  )}
+                  {/* </ReactCSSTransitionGroup> */}
                 </GifBox>
               </Root>
             )}
