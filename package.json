@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "react": "^16.3.0",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.3.0",
     "react-full-screen": "^0.2.2",
     "react-gif": "^0.1.0",

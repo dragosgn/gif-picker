@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Route } from "react-router-dom";
 import Fullscreen from "react-full-screen";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group"; // ES6
 
 const Root = styled.div`
   height: 100vh;
@@ -159,7 +160,11 @@ class App extends Component {
               <Root routerProps={routerProps}>
                 <Headline>{this.state.title}</Headline>
                 <Gif>{this.state.content}</Gif>
-                <button onClick={this.goFull}>Switch Fullscreen</button>
+                {this.state.isFull ? (
+                  ""
+                ) : (
+                  <button onClick={this.goFull}>Switch Fullscreen</button>
+                )}
               </Root>
             )}
           />
