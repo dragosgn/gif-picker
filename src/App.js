@@ -158,11 +158,10 @@ class App extends Component {
             path={"/"}
             render={routerProps => (
               <Root routerProps={routerProps}>
-                <GifBox>
+                {/* <GifBox>
                   <Headline>{this.state.title}</Headline>
-                  {/* <img src={this.state.content} height={400} /> */}
                   {this.state.content && <StyledImg src={this.state.content} />}
-                </GifBox>
+                </GifBox> */}
               </Root>
             )}
           />
