@@ -3,53 +3,13 @@ import styled, { keyframes } from "styled-components";
 import { Route } from "react-router-dom";
 import Fullscreen from "react-full-screen";
 
-// import { fadeIn, fadeOut } from "react-animations";
-
 import dino from "./gifs/dino.gif";
 import gandalf from "./gifs/gandalf.gif";
 import shooting from "./gifs/shooting.gif";
 import shrug from "./gifs/shrug.gif";
 import space from "./gifs/space.gif";
 
-// import ReactCSSTransitionGroup from "react-addons-css-transition-group"; // ES6
-// import "./App.css";
-import Transition from "react-transition-group/Transition";
-
-// const documents = [
-//   {
-//     title: "First Document",
-//     id: 1
-//   },
-//   { title: "Second Document", id: 2 },
-//   { title: "Third Document", id: 3 }
-// ];
-
-const duration = 300;
-
-const defaultStyle = {
-  transition: `opacity ${duration}ms ease-in-out`,
-  opacity: 0
-};
-
-const transitionStyles = {
-  entering: { opacity: 0 },
-  entered: { opacity: 1 }
-};
-
-const Fade = ({ in: inProp }) => (
-  <Transition in={inProp} timeout={duration}>
-    {state => (
-      <div
-        style={{
-          ...defaultStyle,
-          ...transitionStyles[state]
-        }}
-      >
-        I'm a fade Transition!
-      </div>
-    )}
-  </Transition>
-);
+import { fadeIn } from "react-animations";
 
 const Root = styled.div`
   height: 100vh;
@@ -72,9 +32,50 @@ const GifBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: ${props => (props.out ? fadeOut : fadeIn)} 1s linear;
+  transition: visibility 1s linear;
 `;
 
-// const faderIn = keyframes`${fadeIn}`;
+const rotate360 = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+// const fadeIn = keyframes`
+//   from {
+//     transform: scale(.25);
+//     opacity: 0;
+//   }
+//
+//   to {
+//     transform: scale(1);
+//     opacity: 1;
+//   }
+// `;
+
+const fadeOut = keyframes`
+  from {
+    transform: scale(1);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(.25);
+    opacity: 1;
+  }
+`;
+
+const fader = keyframes`${fadeIn}`;
+
+const StyledImg = styled.img`
+  animation: 1s ${fader} linear;
+  height: 400px;
+`;
 
 const Headline = styled.h1`
   color: white;
@@ -84,14 +85,7 @@ const Headline = styled.h1`
   display: flex;
   justify-content: center;
   font-family: "Roboto", sans-serif;
-`;
-
-const Gif = styled.div`
-  display: flex;
-  padding-top: 1rem;
-  justify-content: center;
-  height: 400px;
-  padding-bottom: 0.5rem;
+  animation: 1s ${fader} linear;
 `;
 
 const Button = styled.button`
@@ -103,12 +97,12 @@ const Button = styled.button`
 
 const gifs = [
   {
-    content: shrug,
-    title: "But it works on my local machine.."
-  },
-  {
     content: space,
     title: "When you write reusable code"
+  },
+  {
+    content: shrug,
+    title: "But it works on my local machine.."
   },
   {
     content: dino,
@@ -165,12 +159,9 @@ class App extends Component {
             render={routerProps => (
               <Root routerProps={routerProps}>
                 <GifBox>
-                  <ReactCSSTransitionGroup {...transitionOptions}>
-                    <Headline>{this.state.title}</Headline>
-                    <Gif>
-                      <img src={this.state.content} height={400} />
-                    </Gif>
-                  </ReactCSSTransitionGroup>
+                  <Headline>{this.state.title}</Headline>
+                  {/* <img src={this.state.content} height={400} /> */}
+                  {this.state.content && <StyledImg src={this.state.content} />}
                 </GifBox>
               </Root>
             )}
