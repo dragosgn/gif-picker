@@ -5,11 +5,11 @@ import Fullscreen from "react-full-screen";
 
 import { fadeIn, fadeOut } from "react-animations";
 
-import dino from "./gifs/dino";
-import gandalf from "./gifs/gandalf";
-import shootig from "./gifs/shooting";
-import shrug from "./gifs/shrug";
-import space from "./gifs/space";
+import dino from "./gifs/dino.gif";
+import gandalf from "./gifs/gandalf.gif";
+import shooting from "./gifs/shooting.gif";
+import shrug from "./gifs/shrug.gif";
+import space from "./gifs/space.gif";
 
 const Root = styled.div`
   height: 100vh;
@@ -54,6 +54,8 @@ const Gif = styled.div`
   padding-top: 1rem;
   justify-content: center;
   animation: ${faderIn}, ${faderOut} 3s linear 1;
+  height: 400px;
+  padding-bottom: 0.5rem;
 `;
 
 const Button = styled.button`
@@ -128,7 +130,9 @@ class App extends Component {
               <Root routerProps={routerProps}>
                 <GifBox>
                   <Headline>{this.state.title}</Headline>
-                  <Gif>{this.state.content}</Gif>
+                  <Gif>
+                    <img src={this.state.content} height={400} />
+                  </Gif>
                   {this.state.isFull ? (
                     ""
                   ) : (
