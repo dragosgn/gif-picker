@@ -133,11 +133,11 @@ class App extends Component {
                   <Gif>
                     <img src={this.state.content} height={400} />
                   </Gif>
-                  {this.state.isFull ? (
+                  {/* {this.state.isFull ? (
                     ""
                   ) : (
                     <Button onClick={this.goFull}>Switch Fullscreen</Button>
-                  )}
+                  )} */}
                 </GifBox>
               </Root>
             )}
