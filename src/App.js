@@ -5,6 +5,12 @@ import Fullscreen from "react-full-screen";
 
 import { fadeIn, fadeOut } from "react-animations";
 
+import dino from "./gifs/dino";
+import gandalf from "./gifs/gandalf";
+import shootig from "./gifs/shooting";
+import shrug from "./gifs/shrug";
+import space from "./gifs/space";
+
 const Root = styled.div`
   height: 100vh;
   background-color: black;
@@ -59,88 +65,23 @@ const Button = styled.button`
 
 const gifs = [
   {
-    content: (
-      <iframe
-        title="13NUOwOLq0NJug"
-        src="https://giphy.com/embed/13NUOwOLq0NJug"
-        width="480"
-        height="401"
-        frameBorder="0"
-        className="giphy-embed"
-        allowFullScreen
-      />
-    ),
+    content: shrug,
     title: "But it worked on my local machine.."
   },
   {
-    content: (
-      <iframe
-        title="nhjqWBnMfF888"
-        src="https://giphy.com/embed/nhjqWBnMfF888"
-        width="480"
-        height="254"
-        frameBorder="0"
-        className="giphy-embed"
-        title={Math.random()}
-        allowFullScreen
-      />
-    ),
+    content: space,
     title: "When you write reusable code"
   },
   {
-    content: (
-      <iframe
-        title="V4sY8JCTxGyaI"
-        src="https://giphy.com/embed/V4sY8JCTxGyaI"
-        width="480"
-        height="270"
-        frameBorder="0"
-        className="giphy-embed"
-        allowFullScreen
-      />
-    ),
+    content: dino,
     title: "When you don't have time for strategic work"
   },
   {
-    content: (
-      <iframe
-        title="8abAbOrQ9rvLG"
-        src="https://giphy.com/embed/8abAbOrQ9rvLG"
-        width="480"
-        height="233"
-        frameBorder="0"
-        className="giphy-embed"
-        allowFullScreen
-      />
-    ),
+    content: gandalf,
     title: "Gandalf was actually more of a QA guy.."
   },
   {
-    content: (
-      <iframe
-        title="l41YrdtfokTyKGFu8"
-        src="https://giphy.com/embed/l41YrdtfokTyKGFu8"
-        width="480"
-        height="387"
-        frameBorder="0"
-        className="giphy-embed"
-        allowFullScreen
-      />
-    ),
-    title: "Troubleshooting servers after a DEV deployment"
-  },
-  {
-    content: (
-      <iframe
-        title="9umH7yTO8gLYY"
-        src="https://giphy.com/embed/9umH7yTO8gLYY"
-        width="480"
-        height="339"
-        frameBorder="0"
-        className="giphy-embed"
-        allowFullScreen
-      />
-    ),
+    content: shooting,
     title: "Intern hitting production"
   }
 ];
