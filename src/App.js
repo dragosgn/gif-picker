@@ -11,19 +11,45 @@ import shooting from "./gifs/shooting.gif";
 import shrug from "./gifs/shrug.gif";
 import space from "./gifs/space.gif";
 
-import ReactCSSTransitionGroup from "react-addons-css-transition-group"; // ES6
-import "./App.css";
+// import ReactCSSTransitionGroup from "react-addons-css-transition-group"; // ES6
+// import "./App.css";
+import Transition from "react-transition-group/Transition";
 
-const Document = ({ title, id }) => <div key={id}>{title}</div>;
+// const documents = [
+//   {
+//     title: "First Document",
+//     id: 1
+//   },
+//   { title: "Second Document", id: 2 },
+//   { title: "Third Document", id: 3 }
+// ];
 
-const documents = [
-  {
-    title: "First Document",
-    id: 1
-  },
-  { title: "Second Document", id: 2 },
-  { title: "Third Document", id: 3 }
-];
+const duration = 300;
+
+const defaultStyle = {
+  transition: `opacity ${duration}ms ease-in-out`,
+  opacity: 0
+};
+
+const transitionStyles = {
+  entering: { opacity: 0 },
+  entered: { opacity: 1 }
+};
+
+const Fade = ({ in: inProp }) => (
+  <Transition in={inProp} timeout={duration}>
+    {state => (
+      <div
+        style={{
+          ...defaultStyle,
+          ...transitionStyles[state]
+        }}
+      >
+        I'm a fade Transition!
+      </div>
+    )}
+  </Transition>
+);
 
 const Root = styled.div`
   height: 100vh;
@@ -130,13 +156,6 @@ class App extends Component {
   }
 
   render() {
-    const transitionOptions = {
-      transitionName: "fade",
-      transitionEnterTimeout: 500,
-      transitionLeaveTimeout: 500,
-      transitionAppear: true,
-      transitionAppearTimeout: 500
-    };
     return (
       <div>
         <Fullscreen enabled={this.state.isFull}>
@@ -153,15 +172,6 @@ class App extends Component {
                     </Gif>
                   </ReactCSSTransitionGroup>
                 </GifBox>
-                <ReactCSSTransitionGroup
-                  transitionName="documents-list"
-                  transitionEnterTimeout={0}
-                  transitionLeaveTimeout={0}
-                >
-                  {documents.map(doc => (
-                    <Document key={doc.id} document={doc.title} />
-                  ))}
-                </ReactCSSTransitionGroup>
               </Root>
             )}
           />

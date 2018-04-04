@@ -1,19 +1,8 @@
-/* starting state of animation*/
-.fade-enter {
-  right: 100px;
-}
-
-.fade-enter-active {
-  right: 0;
-  transition: 0.5s ease-in all;
-}
-
-.fade-appear {
+.anim-appear {
   opacity: 0.01;
 }
 
-.fade-appear.fade-appear-active {
-  opacity: 1;
-  right: 0;
-  transition: opacity 1s ease-in;
+.anim-appear.anim-appear-active {
+  opacity: 2;
+  transition: opacity 5s ease-in;
 }
