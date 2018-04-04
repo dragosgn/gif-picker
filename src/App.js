@@ -47,6 +47,7 @@ const Headline = styled.h1`
   justify-content: center;
   animation: ${faderIn}, ${faderOut};
   animation-duration: 2s, 2s;
+  font-family: "Roboto", sans-serif;
 `;
 
 const Gif = styled.div`
@@ -68,7 +69,7 @@ const Button = styled.button`
 const gifs = [
   {
     content: shrug,
-    title: "But it worked on my local machine.."
+    title: "But it works on my local machine.."
   },
   {
     content: space,
@@ -84,7 +85,7 @@ const gifs = [
   },
   {
     content: shooting,
-    title: "Intern hitting production"
+    title: "Intern deploying to production"
   }
 ];
 
