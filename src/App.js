@@ -3,13 +3,27 @@ import styled, { keyframes } from "styled-components";
 import { Route } from "react-router-dom";
 import Fullscreen from "react-full-screen";
 
-import { fadeIn, fadeOut } from "react-animations";
+// import { fadeIn, fadeOut } from "react-animations";
 
 import dino from "./gifs/dino.gif";
 import gandalf from "./gifs/gandalf.gif";
 import shooting from "./gifs/shooting.gif";
 import shrug from "./gifs/shrug.gif";
 import space from "./gifs/space.gif";
+
+import ReactCSSTransitionGroup from "react-addons-css-transition-group"; // ES6
+import "./App.css";
+
+const Document = ({ title, id }) => <div key={id}>{title}</div>;
+
+const documents = [
+  {
+    title: "First Document",
+    id: 1
+  },
+  { title: "Second Document", id: 2 },
+  { title: "Third Document", id: 3 }
+];
 
 const Root = styled.div`
   height: 100vh;
@@ -34,9 +48,7 @@ const GifBox = styled.div`
   align-items: center;
 `;
 
-const faderIn = keyframes`${fadeIn}`;
-
-const faderOut = keyframes`${fadeOut}`;
+// const faderIn = keyframes`${fadeIn}`;
 
 const Headline = styled.h1`
   color: white;
@@ -45,8 +57,6 @@ const Headline = styled.h1`
   width: 100%;
   display: flex;
   justify-content: center;
-  animation: ${faderIn}, ${faderOut};
-  animation-duration: 2s, 2s;
   font-family: "Roboto", sans-serif;
 `;
 
@@ -54,7 +64,6 @@ const Gif = styled.div`
   display: flex;
   padding-top: 1rem;
   justify-content: center;
-  animation: ${faderIn}, ${faderOut} 3s linear 1;
   height: 400px;
   padding-bottom: 0.5rem;
 `;
@@ -121,6 +130,13 @@ class App extends Component {
   }
 
   render() {
+    const transitionOptions = {
+      transitionName: "fade",
+      transitionEnterTimeout: 500,
+      transitionLeaveTimeout: 500,
+      transitionAppear: true,
+      transitionAppearTimeout: 500
+    };
     return (
       <div>
         <Fullscreen enabled={this.state.isFull}>
@@ -130,16 +146,22 @@ class App extends Component {
             render={routerProps => (
               <Root routerProps={routerProps}>
                 <GifBox>
-                  <Headline>{this.state.title}</Headline>
-                  <Gif>
-                    <img src={this.state.content} height={400} />
-                  </Gif>
-                  {/* {this.state.isFull ? (
-                    ""
-                  ) : (
-                    <Button onClick={this.goFull}>Switch Fullscreen</Button>
-                  )} */}
+                  <ReactCSSTransitionGroup {...transitionOptions}>
+                    <Headline>{this.state.title}</Headline>
+                    <Gif>
+                      <img src={this.state.content} height={400} />
+                    </Gif>
+                  </ReactCSSTransitionGroup>
                 </GifBox>
+                <ReactCSSTransitionGroup
+                  transitionName="documents-list"
+                  transitionEnterTimeout={0}
+                  transitionLeaveTimeout={0}
+                >
+                  {documents.map(doc => (
+                    <Document key={doc.id} document={doc.title} />
+                  ))}
+                </ReactCSSTransitionGroup>
               </Root>
             )}
           />
