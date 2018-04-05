@@ -25,6 +25,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "compression-webpack-plugin": "^1.1.11",
     "gh-pages": "^1.1.0"
   }
 }
