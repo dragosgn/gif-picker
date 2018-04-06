@@ -7,7 +7,7 @@ import dino from "./gifs/dino.gif";
 import gandalf from "./gifs/gandalf.gif";
 import shooting from "./gifs/shooting.gif";
 import shrug from "./gifs/shrug.gif";
-// import space from "./gifs/space.gif";
+import space from "./gifs/space.gif";
 import happy from "./gifs/happy.gif";
 import piggy from "./gifs/piggy.gif";
 import friday from "./gifs/friday.gif";
