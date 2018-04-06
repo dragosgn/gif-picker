@@ -11,6 +11,7 @@ import shrug from "./gifs/shrug.gif";
 import happy from "./gifs/happy.gif";
 import piggy from "./gifs/piggy.gif";
 import friday from "./gifs/friday.gif";
+import homeOffice from "./gifs/homeOffice.gif";
 
 import { fadeIn } from "react-animations";
 
@@ -92,17 +93,21 @@ const gifs = [
     title:
       "Yeah hey, they say two thousand zero zero party over, oops, out of time, \n So tonight I'm gonna party like it's nineteen ninety-nine"
   },
-  // {
-  //   content: space,
-  //   title: "When you write reusable code"
-  // },
+  {
+    content: homeOffice,
+    title: "I am doing home office today..."
+  },
+  {
+    content: space,
+    title: "When you write reusable code"
+  },
   {
     content: friday,
     title: "Just about time..."
   },
   {
     content: piggy,
-    title: "Time to get da fak out of here..."
+    title: "Time to goooooooo..."
   },
   {
     content: shrug,
