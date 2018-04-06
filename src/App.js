@@ -7,7 +7,10 @@ import dino from "./gifs/dino.gif";
 import gandalf from "./gifs/gandalf.gif";
 import shooting from "./gifs/shooting.gif";
 import shrug from "./gifs/shrug.gif";
-import space from "./gifs/space.gif";
+// import space from "./gifs/space.gif";
+import happy from "./gifs/happy.gif";
+import piggy from "./gifs/piggy.gif";
+import friday from "./gifs/friday.gif";
 
 import { fadeIn } from "react-animations";
 
@@ -45,18 +48,6 @@ const rotate360 = keyframes`
     transform: rotate(360deg);
   }
 `;
-
-// const fadeIn = keyframes`
-//   from {
-//     transform: scale(.25);
-//     opacity: 0;
-//   }
-//
-//   to {
-//     transform: scale(1);
-//     opacity: 1;
-//   }
-// `;
 
 const fadeOut = keyframes`
   from {
@@ -97,8 +88,21 @@ const Button = styled.button`
 
 const gifs = [
   {
-    content: space,
-    title: "When you write reusable code"
+    content: happy,
+    title:
+      "Yeah hey, they say two thousand zero zero party over, oops, out of time, \n So tonight I'm gonna party like it's nineteen ninety-nine"
+  },
+  // {
+  //   content: space,
+  //   title: "When you write reusable code"
+  // },
+  {
+    content: friday,
+    title: "Just about time..."
+  },
+  {
+    content: piggy,
+    title: "Time to get da fak out of here..."
   },
   {
     content: shrug,
@@ -158,10 +162,10 @@ class App extends Component {
             path={"/"}
             render={routerProps => (
               <Root routerProps={routerProps}>
-                {/* <GifBox>
+                <GifBox>
                   <Headline>{this.state.title}</Headline>
                   {this.state.content && <StyledImg src={this.state.content} />}
-                </GifBox> */}
+                </GifBox>
               </Root>
             )}
           />
